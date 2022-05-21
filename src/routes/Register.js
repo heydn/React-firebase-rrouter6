@@ -4,8 +4,8 @@ import { UserContext } from '../context/UserProvider';
 
 export const Register = () => {
 
-const [email, setEmail] = useState();
-const [password, setPassword] = useState();
+const [email, setEmail] = useState('');
+const [password, setPassword] = useState('');
 
 const navegate = useNavigate();
 

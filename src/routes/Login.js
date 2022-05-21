@@ -7,8 +7,8 @@ import { UserContext } from '../context/UserProvider';
 
 export const Login = () => {
   
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   
   const {loginUser} = useContext(UserContext);
   const navigate = useNavigate();
