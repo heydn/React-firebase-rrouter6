@@ -28,23 +28,23 @@ export const Login = () => {
 
   return (
     <>
-        <h1>Login</h1>
-        <form onSubmit={handleSubmit}>
-            <input 
-                type="email"
-                placeholder="email" 
-                value={email}
-                onChange={e => setEmail(e.target.value)}
-            />
-            <input 
-                type="password"
-                placeholder="password" 
-                value={password}
-                onChange={e => setPassword(e.target.value)}
-            />
-            <button type='submit'>Login</button>
+      <h1>Login</h1>
+      <form onSubmit={handleSubmit}>
+        <input 
+          type="email"
+          placeholder="email" 
+          value={email}
+          onChange={e => setEmail(e.target.value)}
+        />
+        <input 
+          type="password"
+          placeholder="password" 
+          value={password}
+          onChange={e => setPassword(e.target.value)}
+        />
+        <button type='submit'>Login</button>
 
-        </form>
+      </form>
     </>
   )
 }
