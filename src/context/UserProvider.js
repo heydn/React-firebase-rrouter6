@@ -17,8 +17,6 @@ export const UserProvider = (props) => {
       }else{
         setUser(null)
       }
-
-
     })
       return () => unsuscribe()
   },[])

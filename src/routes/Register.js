@@ -1,5 +1,5 @@
-import React, { useContext, useState } from 'react';
-import { appendErrors, useForm } from 'react-hook-form';
+import React, { useContext } from 'react';
+import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../context/UserProvider';
 
@@ -7,8 +7,6 @@ export const Register = () => {
     
   const navegate = useNavigate();
   const {registerUser} = useContext(UserContext);
-  // const [email, setEmail] = useState('');
-  // const [password, setPassword] = useState('');
 
   const {
     register, 
