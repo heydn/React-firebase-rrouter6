@@ -17,9 +17,9 @@ export const formValidate = (getValues) => {
       value: /^(?!\s)/,
       message:'No se aceptan espacios en blanco'
     },
-    validateEquals(getValues){
+    validateEquals(value){
       return {
-        equals: v => v === getValues('password') || 'No coinciden las contraseñas'
+        equals: v => v === value || 'No coinciden las contraseñas'
       }
     }
   }

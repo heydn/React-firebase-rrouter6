@@ -28,16 +28,14 @@ export const Register = () => {
       navegate('/');
     } catch (error) {
       console.log(error.code);
-      setError('firebase',{
-        message: erroresFirebase(error.code),
-      })
+      const {code,message} = erroresFirebase(error.code)
+      setError(code, { message: message });
     }
   }
 
   return (
     <>
       <h1>Register</h1>
-      <FormError error={errors.firebase}/>
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormInput
           type="email"
@@ -66,7 +64,7 @@ export const Register = () => {
             type="password"
             placeholder="password" 
             {...register('repassword',{
-              validate: validateEquals(getValues)
+              validate: validateEquals(getValues('password'))
             })}
         ></FormInput>
 

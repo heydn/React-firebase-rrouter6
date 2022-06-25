@@ -29,9 +29,8 @@ export const Login = () => {
       navegate('/');
     } catch (error) {
       console.log(error.code);
-      setError('firebase',{
-        message: erroresFirebase(error.code),
-      })
+      const {code,message} = erroresFirebase(error.code)
+      setError(code, { message: message });
     }
   }
 
@@ -41,7 +40,6 @@ export const Login = () => {
   return (
     <>
       <h1>Login</h1>
-      <FormError error={errors.firebase}/>
       <form onSubmit={handleSubmit(onSubmit)}>
 
       <FormInput
