@@ -7,6 +7,8 @@ import { formValidate } from '../utils/formValidate';
 
 import { FormError } from '../components/FormError';
 import { FormInput } from '../components/FormInput';
+import { Title } from '../components/Title';
+import { Button } from '../components/Button';
 
 export const Register = () => {
     
@@ -36,7 +38,7 @@ export const Register = () => {
 
   return (
     <>
-      <h1>Register</h1>
+      <Title title="Registrarme"/>
       <FormError error={errors.firebase}/>
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormInput
@@ -46,9 +48,12 @@ export const Register = () => {
             required,
             pattern: patternEmail
           })}
-        ></FormInput>
-
+          label="Ingresa tu correo electrónico"
+          error={errors.email}
+        >
+        </FormInput>
         <FormError error={errors.email}/>
+
 
         <FormInput
           type="password"
@@ -58,6 +63,8 @@ export const Register = () => {
             required,
             pattern: patternPassword
           })}
+          label="Ingresa tu contraseña"
+          error={errors.password}
         ></FormInput>
         
           <FormError error={errors.password}/>
@@ -68,11 +75,16 @@ export const Register = () => {
             {...register('repassword',{
               validate: validateEquals(getValues)
             })}
+            label="Repite tu contraseña"
+            error={errors.repassword}
         ></FormInput>
 
           <FormError error={errors.repassword}/>
 
-          <button type='submit'>Register</button>
+          <Button 
+            text="Registrarme"
+            type="submit" 
+          />
 
       </form>
     </>

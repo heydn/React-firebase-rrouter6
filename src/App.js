@@ -7,6 +7,7 @@ import { Navbar } from './components/Navbar';
 import { RequireAuth } from './components/RequireAuth';
 import { useContext } from 'react';
 import { UserContext } from './context/UserProvider';
+import { LayoutContainerForm } from './components/LayoutContainerForm';
 
 
 
@@ -31,9 +32,10 @@ const App = () => {
             </RequireAuth>
           }>
         </Route>
-
-        <Route path='/login' element={<Login/>}></Route>
-        <Route path='/register' element={<Register/>}></Route>
+        <Route path="/" element={<LayoutContainerForm />}>
+          <Route path='/login' element={<Login/>}></Route>
+          <Route path='/register' element={<Register/>}></Route>
+        </Route>
       </Routes>
     </div>
   );
