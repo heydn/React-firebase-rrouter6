@@ -30,31 +30,30 @@ export const Login = () => {
       await loginUser(data.email, data.password)
       navegate('/');
     } catch (error) {
-      console.log(error.code);
-      setError('firebase',{
-        message: erroresFirebase(error.code),
-      })
+      const { code, message } = erroresFirebase(error.code);
+      setError(code, { message });
     }
   }
 
   return (
     <>
       <Title title="Login" />
-      <FormError error={errors.firebase}/>
+      {/* <FormError error={errors.firebase}/> */}
       <form onSubmit={handleSubmit(onSubmit)}>
 
-      <FormInput
-          label="Ingresa tu correo electrónico"
-          type="email"
-          placeholder="Ingrese email"
-          {...register('email',{
-            required,
-            pattern: patternEmail
-          })}
-          error={errors.email || errors.firebase}
-        ></FormInput>
+        <FormInput
+            label="Ingresa tu correo electrónico"
+            type="email"
+            placeholder="Ingrese email"
+            {...register('email',{
+              required,
+              pattern: patternEmail
+            })}
+            error={errors.email}
+        >
+        </FormInput>
+          <FormError error={errors.email}/>
 
-        <FormError error={errors.email}/>
 
         <FormInput
           label="Ingresa tu contraseña"
@@ -66,10 +65,10 @@ export const Login = () => {
             pattern: patternPassword
           })}
           error={errors.password}
-        ></FormInput>
-        
+        >
+        </FormInput>
           <FormError error={errors.password}/>
-          
+        
         <Button 
           text="Login"
           type="submit" 

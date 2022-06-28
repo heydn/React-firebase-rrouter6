@@ -30,16 +30,15 @@ export const Register = () => {
       navegate('/');
     } catch (error) {
       console.log(error.code);
-      setError('firebase',{
-        message: erroresFirebase(error.code),
-      })
+      const { code, message } = erroresFirebase(error.code);
+            setError(code, { message });
     }
   }
 
   return (
     <>
       <Title title="Registrarme"/>
-      <FormError error={errors.firebase}/>
+      {/* <FormError error={errors.firebase}/> */}
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormInput
           type="email"
@@ -51,8 +50,8 @@ export const Register = () => {
           label="Ingresa tu correo electrónico"
           error={errors.email}
         >
+          <FormError error={errors.email}/>
         </FormInput>
-        <FormError error={errors.email}/>
 
 
         <FormInput
@@ -73,18 +72,18 @@ export const Register = () => {
             type="password"
             placeholder="password" 
             {...register('repassword',{
-              validate: validateEquals(getValues)
+              validate: validateEquals(getValues("password")),
             })}
             label="Repite tu contraseña"
             error={errors.repassword}
-        ></FormInput>
-
+        >
           <FormError error={errors.repassword}/>
+        </FormInput>
 
-          <Button 
-            text="Registrarme"
-            type="submit" 
-          />
+        <Button 
+          text="Registrarme"
+          type="submit" 
+        />
 
       </form>
     </>
