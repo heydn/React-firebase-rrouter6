@@ -32,6 +32,7 @@ const App = () => {
             </RequireAuth>
           }>
         </Route>
+        
         <Route path="/" element={<LayoutContainerForm />}>
           <Route path='/login' element={<Login/>}></Route>
           <Route path='/register' element={<Register/>}></Route>
