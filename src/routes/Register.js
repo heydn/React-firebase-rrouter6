@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../context/UserProvider';
@@ -14,6 +14,7 @@ export const Register = () => {
     
   const navegate = useNavigate();
   const {registerUser} = useContext(UserContext);
+  const [loading, setLoading] = useState(false);
   const {required,patternEmail, minLength, patternPassword,validateEquals } = formValidate();
 
   const {
@@ -26,12 +27,15 @@ export const Register = () => {
 
   const onSubmit = async(data) => {
     try {
+      setLoading(true)
       await registerUser(data.email, data.password)
       navegate('/');
     } catch (error) {
       console.log(error.code);
       const { code, message } = erroresFirebase(error.code);
             setError(code, { message });
+    }finally{
+      setLoading(false)
     }
   }
 
@@ -81,8 +85,10 @@ export const Register = () => {
         </FormInput>
 
         <Button 
+          type="submit"
           text="Registrarme"
-          type="submit" 
+          color="yellow"
+          loading={loading}
         />
 
       </form>

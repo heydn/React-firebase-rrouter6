@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../components/Button';
@@ -10,11 +10,10 @@ import { erroresFirebase } from '../utils/erroresFirebase';
 import { formValidate } from '../utils/formValidate';
 
 
-
-
 export const Login = () => {
   
   const {loginUser} = useContext(UserContext);
+  const [loading, setLoading] = useState(false);
   const navegate = useNavigate();
   const {required,patternEmail, minLength, patternPassword } = formValidate();
   
@@ -27,11 +26,14 @@ export const Login = () => {
 
   const onSubmit = async(data) => {
     try {
+      setLoading(true)
       await loginUser(data.email, data.password)
       navegate('/');
     } catch (error) {
       const { code, message } = erroresFirebase(error.code);
       setError(code, { message });
+    }finally {
+      setLoading(false)
     }
   }
 
@@ -68,12 +70,13 @@ export const Login = () => {
         >
         </FormInput>
           <FormError error={errors.password}/>
-        
-        <Button 
-          text="Login"
-          type="submit" 
-        />
-
+          <Button 
+            type="submit"
+            text="Login"
+            color="yellow"
+            loading={loading}
+          />
+           
       </form>
     </>
   )
